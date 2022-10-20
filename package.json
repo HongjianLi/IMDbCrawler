@@ -1,0 +1,16 @@
+{
+	"name": "IMDbCrawler",
+	"version": "1.0.0",
+	"description": "Crawl IMDb pages to extract images, stars, plots",
+	"author": "Hongjian Li",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/HongjianLi/IMDbCrawler.git"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"puppeteer": "^19.0.0",
+		"@tensorflow/tfjs-node": "^4.0.0"
+	}
+}
