@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 import fs from 'fs/promises';
 import puppeteer from 'puppeteer';
+import ProgressBar from 'progress';
 const year = '2022';
 const rows = (await fs.readFile('Movies.csv')).toString().split('\n').filter(line => line.startsWith(year)).map(line => line.split(','));
-console.log(rows.length);
 const browser = await puppeteer.launch({
 	args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
 });
+const bar = new ProgressBar('[:bar] :title :current/:total=:percent :elapseds :etas', { total: rows.length });
 for (let k = 0; k < rows.length; ++k) {
 	const row = rows[k];
 	const title = row[2];
-	console.log(k, title);
+	bar.tick({ title });
 	const titlePage = await browser.newPage();
 	await titlePage.goto(`https://www.imdb.com/title/${title}/`, { waitUntil: 'networkidle0' });
 	const src = await titlePage.evaluate(() => (document.querySelector('img.ipc-image').src ));
