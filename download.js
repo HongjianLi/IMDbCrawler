@@ -14,11 +14,11 @@ for (let k = 0; k < rows.length; ++k) {
 	console.log(k, title);
 	const titlePage = await browser.newPage();
 	await titlePage.goto(`https://www.imdb.com/title/${title}/`, { waitUntil: 'networkidle0' });
-	const src = await titlePage.evaluate(() => { return document.querySelector('img.ipc-image').src;	});
+	const src = await titlePage.evaluate(() => (document.querySelector('img.ipc-image').src ));
 	await titlePage.close();
 	const jpg = `${src.split('_').slice(0, 2).join('_')}_.jpg`;
 	const imagePage = await browser.newPage();
-	const resp = await imagePage.goto(row[3]);
+	const resp = await imagePage.goto(jpg);
 	await fs.writeFile(`images/${title}.jpg`, await resp.buffer());
 	await imagePage.close();
 }
