@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import fs from 'fs/promises';
 import puppeteer from 'puppeteer';
-const rows = (await fs.readFile('Movies.csv')).toString().split('\n').filter(line.startsWith('2022')).map(line => line.split(','));
+const year = '2022';
+const rows = (await fs.readFile('Movies.csv')).toString().split('\n').filter(line.startsWith(year)).map(line => line.split(','));
 console.log(rows.length);
 const browser = await puppeteer.launch({
 	args: ['--no-sandbox', '--disable-setuid-sandbox'],
