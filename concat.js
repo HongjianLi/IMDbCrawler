@@ -14,7 +14,6 @@ for (let k = 0; k < 20; ++k) {
 	const outputTensor = tf.image.resizeBilinear(inputTensor, [width * inputTensor.shape[0] / inputTensor.shape[1], width]); // resizeNearestNeighbor
 	outputTensors.push(outputTensor);
 	tf.dispose(inputTensor);
-
 }
 const outputTensor = tf.concat(outputTensors);
 console.log(outputTensor.shape);
