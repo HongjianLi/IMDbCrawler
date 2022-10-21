@@ -20,7 +20,7 @@ for (let k = 0; k < rows.length; ++k) {
 	const jpg = `${src.split('_').slice(0, 2).join('_')}_.jpg`;
 	const imagePage = await browser.newPage();
 	const resp = await imagePage.goto(jpg);
-	await fs.writeFile(`images/${title}.jpg`, await resp.buffer()); // If the image is too large, say >6MB, calling resp.buffer() may cause ProtocolError: Protocol error (Network.getResponseBody): Request content was evicted from inspector cache
+	await fs.writeFile(`images/${title}.jpg`, await resp.buffer()); // There's a limitation on the resource content size that devtools keep in memory. It's 10Mb for resource. When the limitation is exceeded, calling resp.buffer() will cause ProtocolError: Protocol error (Network.getResponseBody): Request content was evicted from inspector cache
 	await imagePage.close();
 }
 await browser.close();
