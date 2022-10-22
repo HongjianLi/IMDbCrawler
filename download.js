@@ -9,6 +9,7 @@ const browser = await puppeteer.launch({
 	executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
 });
 const bar = new ProgressBar('[:bar] :title :current/:total=:percent :elapseds :etas', { total: rows.length });
+const failed = [];
 for (let k = 0; k < rows.length; ++k) {
 	const row = rows[k];
 	const title = row[2];
@@ -23,8 +24,11 @@ for (let k = 0; k < rows.length; ++k) {
 	await resp.buffer().then(async buffer => {
 		await fs.writeFile(`images/${title}.jpg`, buffer);
 	}).catch(error => { // There's a limitation on the resource content size that devtools keep in memory. It's 10Mb for resource. When the limitation is exceeded, calling resp.buffer() will cause ProtocolError: Protocol error (Network.getResponseBody): Request content was evicted from inspector cache
-		console.error(k, title, error);
+		failed.push(title);
 	})
 	await imagePage.close();
 }
 await browser.close();
+if (failed.length) {
+	console.log('Failed to download', failed);
+}
