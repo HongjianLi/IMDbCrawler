@@ -14,10 +14,10 @@ for (let k = 0; k < rows.length; ++k) {
 	const row = rows[k];
 	const title = row[2];
 	bar.tick({ title });
-	const titlePage = await browser.newPage();
-	await titlePage.goto(`https://www.imdb.com/title/${title}/`, { waitUntil: 'networkidle0' });
-	const src = await titlePage.evaluate(() => (document.querySelector('img.ipc-image').src ));
-	await titlePage.close();
+	const page = await browser.newPage();
+	await page.goto(`https://www.imdb.com/title/${title}/`, { waitUntil: 'networkidle0' });
+	const src = await page.evaluate(() => (document.querySelector('img.ipc-image').src ));
+	await page.close();
 	const buffer = await new Promise((resolve, reject) => {
 		https.get(`${src.split('_').slice(0, 2).join('_')}_.jpg`, res => {
 			const data = [];
