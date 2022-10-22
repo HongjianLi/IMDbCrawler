@@ -18,13 +18,13 @@ for (let k = 0; k < rows.length; ++k) {
 	await titlePage.goto(`https://www.imdb.com/title/${title}/`, { waitUntil: 'networkidle0' });
 	const src = await titlePage.evaluate(() => (document.querySelector('img.ipc-image').src ));
 	await titlePage.close();
-	const jpg = `${src.split('_').slice(0, 2).join('_')}_.jpg`;
+	const image = `${src.split('_').slice(0, 2).join('_')}_.jpg`;
 	const imagePage = await browser.newPage();
-	const resp = await imagePage.goto(jpg);
+	const resp = await imagePage.goto(image);
 	await resp.buffer().then(async buffer => {
 		await fs.writeFile(`images/${title}.jpg`, buffer);
 	}).catch(error => { // There's a limitation on the resource content size that devtools keep in memory. It's 10Mb for resource. When the limitation is exceeded, calling resp.buffer() will cause ProtocolError: Protocol error (Network.getResponseBody): Request content was evicted from inspector cache
-		failed.push(title);
+		failed.push({ title, image });
 	})
 	await imagePage.close();
 }
