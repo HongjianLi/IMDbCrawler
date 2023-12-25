@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs/promises';
 import * as tf from '@tensorflow/tfjs-node';
-const year = '2022';
+const year = '2023';
 const rows = (await fs.readFile('Movies.csv')).toString().split('\n').filter(line => line.startsWith(year)).reverse().map(line => line.split(','));
 console.log(rows.length);
 const width = 1080;
