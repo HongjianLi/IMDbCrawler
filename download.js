@@ -17,6 +17,7 @@ for (let k = 0; k < rows.length; ++k) {
 	const path = `images/${title}.jpg`;
 	if (existsSync(path)) continue;
 	const page = await browser.newPage();
+	await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0');
 	await page.goto(`https://www.imdb.com/title/${title}/`, { waitUntil: 'networkidle0' });
 	const src = await page.evaluate(() => (document.querySelector('img.ipc-image').src ));
 	await page.close();
