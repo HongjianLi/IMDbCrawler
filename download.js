@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { promises as fs, existsSync } from 'fs';
 import https from 'https';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 import ProgressBar from 'progress';
 const year = '2023';
 const rows = (await fs.readFile('Movies.csv')).toString().split('\n').filter(line => line.startsWith(year)).map(line => line.split(','));
