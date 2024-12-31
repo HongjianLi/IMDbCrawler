@@ -12,6 +12,6 @@
 	"dependencies": {
 		"@tensorflow/tfjs-node": "^4.22.0",
 		"progress": "^2.0.3",
-		"puppeteer-core": "^23.10.4"
+		"puppeteer-core": "^23.11.1"
 	}
 }
