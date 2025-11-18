@@ -1,7 +1,7 @@
 {
 	"name": "IMDbCrawler",
 	"version": "1.0.0",
-	"description": "Crawl IMDb pages to extract images, stars, plots",
+	"description": "Crawl IMDb pages to extract movie title, year, directors, stars, plot, top 10 cast, poster image, trailer video.",
 	"author": "Hongjian Li",
 	"type": "module",
 	"repository": {
