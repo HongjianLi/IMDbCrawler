@@ -1,12 +1,12 @@
 {
-	"name": "IMDbCrawler",
+	"name": "watched-movies",
 	"version": "1.0.0",
-	"description": "Crawl IMDb pages to extract movie title, year, directors, stars, plot, top cast, poster image, trailer video.",
+	"description": "Organize the movies that I have watched.",
 	"author": "Hongjian Li",
 	"type": "module",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/HongjianLi/IMDbCrawler.git"
+		"url": "https://github.com/HongjianLi/watched-movies.git"
 	},
 	"license": "MIT",
 	"dependencies": {
